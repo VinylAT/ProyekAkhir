@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1058830445812",
+    "firebase_url": "https://gg-firebase-9dabe-default-rtdb.firebaseio.com",
+    "project_id": "gg-firebase-9dabe",
+    "storage_bucket": "gg-firebase-9dabe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058830445812:android:bb9ae4d1781392a12402a1",
+        "android_client_info": {
+          "package_name": "com.polinema.gg_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD3LguC2eEC-7dTNjFS0fF3F8yXkxoTNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058830445812:android:3517e98294fb50322402a1",
+        "android_client_info": {
+          "package_name": "com.polinema.proyekakhir"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD3LguC2eEC-7dTNjFS0fF3F8yXkxoTNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
