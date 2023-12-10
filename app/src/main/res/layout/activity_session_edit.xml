@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sessionEditActivity"
+    android:orientation="vertical"
+    android:background="#212722">
+    <EditText
+        android:id="@+id/editText_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFDFD"
+        android:hint="Event Title" />
+
+    <EditText
+        android:id="@+id/editText_Duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_Title"
+        android:hint="Event Duration"
+        android:textColor="#FFFDFD"
+        android:inputType="number"
+        android:minHeight="48dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonAddSession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonupdateBiodata"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/buttonDeleteBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttondeleteBiodata"
+            android:text="Delete" />
+    </LinearLayout>
+</LinearLayout>

@@ -8,6 +8,19 @@
     android:background="#212722"
     tools:context=".userMainActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Events"
+        android:textColor="#FFFDFD"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/addSession"
         android:layout_width="147dp"
@@ -38,11 +51,9 @@
 
     <ListView
         android:id="@+id/listview_session"
-        android:layout_width="409dp"
-        android:layout_height="656dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="0dp"
+        android:layout_height="594dp"
         android:foregroundTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
