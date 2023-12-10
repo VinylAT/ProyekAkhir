@@ -2,19 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#212722">
 
     <TextView
         android:id="@+id/textViewNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="#FFFDFD"
         android:text="Guntur" />
 
     <TextView
         android:id="@+id/textViewUmur"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFDFD"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:text="20" />
 
@@ -22,6 +25,7 @@
         android:id="@+id/textViewJK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFDFD"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:text="Hadir" />
 

@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class listview_session extends ArrayAdapter {
-
+    //Todo : Done, Debug it
     private Activity context;
     private String SessionIDtoCheck;
     List<Session> list_Session;

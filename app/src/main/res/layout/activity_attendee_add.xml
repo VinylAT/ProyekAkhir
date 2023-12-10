@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AttendeeAddActivity"
+    android:background="#212722">
+
+    <EditText
+        android:id="@+id/editTextNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Attendee Name"
+        android:textColor="#FFFDFD"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextNI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextNama"
+        android:hint="Number Identity"
+        android:textColor="#FFFDFD"
+        android:inputType="number"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/buttonAddAttendee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextNI"
+        android:onClick="addAttendee"
+        android:text="Add" />
+
+    <ListView
+        android:id="@+id/listView_attendee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonAddAttendee" />
+
+</RelativeLayout>

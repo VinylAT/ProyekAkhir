@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class listview_attendee extends ArrayAdapter {
-
+    // ToDo : Done, Debug this
     private Activity context;
     private String SessionIDtoCheck;
     List<Attendee> list_attendee;
@@ -39,7 +39,7 @@ public class listview_attendee extends ArrayAdapter {
         if (isPresent) {
             TextViewisPresent.setText("Hadir");
         } else {
-            TextViewisPresent.setText("Tidak Hadir");
+            TextViewisPresent.setText(" ");
         }
 
         return listViewItem;

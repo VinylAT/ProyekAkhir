@@ -9,6 +9,7 @@ public class Session {
     private int session_duration;
     private boolean isPresent;
     private List<Attendee> attendeeList;
+    public Session(){}
     public Session(String ID, String title, int duration){
         this.session_nama = title;
         this.session_ID = ID;
@@ -43,5 +44,5 @@ public class Session {
         return session_ID;
     }
 
-    // Todo: done for now
+    // Todo: done for now, Debug left
 }
