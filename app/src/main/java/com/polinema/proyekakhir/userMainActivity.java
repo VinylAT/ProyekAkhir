@@ -22,6 +22,7 @@ public class userMainActivity extends AppCompatActivity {
     private ListView listViewSession;
     private DatabaseReference databaseSession;
     private List<Session> listSession;
+    // ToDo : Need to make an add attendee function. Running it.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
