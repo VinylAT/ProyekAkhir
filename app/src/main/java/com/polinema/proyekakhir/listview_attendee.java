@@ -22,6 +22,9 @@ public class listview_attendee extends ArrayAdapter {
         this.context = context;
         this.list_attendee = attendeeArray;
     }
+    public void setSpecSessionID(String SessionID){
+        this.SessionIDtoCheck = SessionID;
+    }
 
     @NonNull
     @Override

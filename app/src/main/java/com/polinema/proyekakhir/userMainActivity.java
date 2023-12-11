@@ -22,7 +22,6 @@ public class userMainActivity extends AppCompatActivity {
     private ListView listViewSession;
     private DatabaseReference databaseSession;
     private List<Session> listSession;
-    // ToDo : Need to make an add attendee function. Running it.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,5 +64,15 @@ public class userMainActivity extends AppCompatActivity {
             }
         });
     }
-    // Todo : Button is still not yet set up, don't forget
+
+    public void toAttendeeList(View view) {
+        Intent intent = new Intent(userMainActivity.this, AttendeeAddActivity.class);
+        startActivity(intent);
+    }
+
+    public void addSession(View view) {
+        Intent intent = new Intent(userMainActivity.this, sessionAddActivity.class);
+        startActivity(intent);
+    }
+    // Todo : Done? debugging
 }

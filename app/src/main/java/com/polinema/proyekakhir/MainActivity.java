@@ -10,7 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Button bAdmin;
     //Button to Intent Admin Main & Admin User is declared
-    // Todo: Should be everything by now, just debug
+    //Todo: Should be everything by now, just debug
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,8 +1,5 @@
 package com.polinema.proyekakhir;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,8 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -65,8 +64,8 @@ public class AttendeeAddActivity extends AppCompatActivity {
                     //Simpan ke list
                     listAttendee.add(attendee);
                 }
-                listview_attendee biodatalistAdapater = new listview_attendee(AttendeeAddActivity.this, listAttendee);
-                listViewAttendee.setAdapter(biodatalistAdapater);
+                listview_attendee attendeelistAdapater = new listview_attendee(AttendeeAddActivity.this, listAttendee);
+                listViewAttendee.setAdapter(attendeelistAdapater);
             }
 
             @Override

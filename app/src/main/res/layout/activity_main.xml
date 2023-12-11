@@ -24,6 +24,6 @@
         android:backgroundTint="#DC8004"
         android:onClick="HandleAdmin"
         android:text="Admin"
-        android:textColor="#212722" />
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

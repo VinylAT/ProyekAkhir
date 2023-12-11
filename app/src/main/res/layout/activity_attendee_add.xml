@@ -12,8 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Attendee Name"
+        android:inputType="textPersonName"
         android:textColor="#FFFDFD"
-        android:inputType="textPersonName" />
+        android:textColorHint="#727262" />
 
     <EditText
         android:id="@+id/editTextNI"
@@ -21,15 +22,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextNama"
         android:hint="Number Identity"
-        android:textColor="#FFFDFD"
         android:inputType="number"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColor="#FFFDFD"
+        android:textColorHint="#727262" />
 
     <Button
         android:id="@+id/buttonAddAttendee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextNI"
+        android:backgroundTint="#DC8004"
         android:onClick="addAttendee"
         android:text="Add" />
 
@@ -37,6 +40,7 @@
         android:id="@+id/listView_attendee"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttonAddAttendee" />
+        android:layout_below="@id/buttonAddAttendee"
+        android:cacheColorHint="#FFFFFF" />
 
 </RelativeLayout>
