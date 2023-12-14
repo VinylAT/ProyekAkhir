@@ -9,9 +9,9 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFFDFD"
+        android:text="Mata Kuliah Mobile"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:text="Guntur" />
+        android:textColor="#FFFDFD" />
 
     <TextView
         android:id="@+id/textViewDuration"

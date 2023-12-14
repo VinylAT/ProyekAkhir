@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sessionAddActivity">
+    tools:context=".AttendeeAddActivity"
+    android:background="#212722">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Title"
+        android:inputType="textPersonName"
+        android:textColor="#FFFDFD"
+        android:textColorHint="#727262" />
+
+    <EditText
+        android:id="@+id/editDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTitle"
+        android:hint="Duration of Event (Session count)"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColor="#FFFDFD"
+        android:textColorHint="#727262" />
+
+    <Button
+        android:id="@+id/buttonAddSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editDuration"
+        android:backgroundTint="#DC8004"
+        android:onClick="addSession"
+        android:text="Add" />
+
+    <ListView
+        android:id="@+id/listView_attendee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonAddSession"
+        android:cacheColorHint="#FFFFFF" />
+
+</RelativeLayout>

@@ -83,9 +83,9 @@ public class AttendeeAddActivity extends AppCompatActivity {
             //Generate ID
             String id = databaseAtendee.push().getKey();
             // Buat objek biodata dengan semua parameternya
-            Attendee biodata = new Attendee(id, nama, NI);
+            Attendee attendee = new Attendee(id, nama, NI);
             //Tambahkan biodata ke database
-            databaseAtendee.child(id).setValue(biodata)
+            databaseAtendee.child(id).setValue(attendee)
                     .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

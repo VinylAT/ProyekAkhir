@@ -6,11 +6,11 @@ import java.util.List;
 public class Session {
     private String session_ID;
     private String session_nama;
-    private int session_duration;
+    private String session_duration;
     private boolean isPresent;
     private List<Attendee> attendeeList;
     public Session(){}
-    public Session(String ID, String title, int duration){
+    public Session(String ID, String title, String duration){
         this.session_nama = title;
         this.session_ID = ID;
         this.session_duration = duration;
@@ -22,7 +22,12 @@ public class Session {
         attendee.markPresence(session_ID, false);
         // Also by default set the attendance isPresent status to false
     }
-
+    public void addAttendee(List<Attendee> attendeeList){
+        for (Attendee attendee : attendeeList){
+            attendeeList.add(attendee);
+            attendee.markPresence(session_ID, false);
+        }
+    }
     public List<Attendee> getAttendeeList() {
         return attendeeList;
     }
@@ -36,7 +41,7 @@ public class Session {
         return session_nama;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return session_duration;
     }
 

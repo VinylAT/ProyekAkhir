@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class listview_session extends ArrayAdapter {
-    //Todo : Done, Debug it
+    // Todo : Done, Debug it
     private Activity context;
     private String SessionIDtoCheck;
     List<Session> list_Session;
@@ -33,7 +33,7 @@ public class listview_session extends ArrayAdapter {
         TextView TextViewDuration = listViewItem.findViewById(R.id.textViewDuration);
         Session session = list_Session.get(position);
         TextViewTitle.setText(session.getSession_nama());
-        TextViewDuration.setText(session.getDuration());
+        TextViewDuration.setText(session.getDuration() + "Session");
         return listViewItem;
     }
 }
