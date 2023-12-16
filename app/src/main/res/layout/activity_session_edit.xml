@@ -85,7 +85,7 @@
             android:layout_width="204dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#DC8004"
-            android:onClick="buttondeleteEvent"
+            android:onClick="buttonCamera"
             android:text="Camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
