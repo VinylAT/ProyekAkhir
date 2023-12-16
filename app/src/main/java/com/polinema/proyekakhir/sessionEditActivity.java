@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class sessionEditActivity extends AppCompatActivity {
-// Todo : Implement Camera here
+//  Todo : Implement Camera here
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

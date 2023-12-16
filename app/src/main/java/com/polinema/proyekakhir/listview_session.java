@@ -33,7 +33,7 @@ public class listview_session extends ArrayAdapter {
         TextView TextViewDuration = listViewItem.findViewById(R.id.textViewDuration);
         Session session = list_Session.get(position);
         TextViewTitle.setText(session.getSession_nama());
-        TextViewDuration.setText(session.getDuration() + "Session");
+        TextViewDuration.setText(session.getDuration() + " Session");
         return listViewItem;
     }
 }

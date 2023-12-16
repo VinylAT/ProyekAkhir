@@ -12,7 +12,6 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@tools:sample/avatars"
         app:srcCompat="@drawable/design_1" />
 
     <Button

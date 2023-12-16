@@ -7,21 +7,20 @@ public class Attendee {
     private String attendee_Nama;
     private String attendee_ID;
     private String attendee_NI;
-    private Boolean isPresent;
-    private Map<String, Boolean> sessionPresence;
+    private Boolean is_Present;
+    private Map<String, Boolean> sessionPresence = new HashMap<>();
 
     public Attendee(String id, String nama, String NI){
         this.attendee_Nama = nama;
         this.attendee_ID = id;
         this.attendee_NI = NI;
-        this.sessionPresence = new HashMap<>();
     }
     public Attendee(){}
     public void markPresence(String sessionId, boolean isPresent) {
         sessionPresence.put(sessionId, isPresent);
     }
     public boolean isPresentInSession(String sessionId) {
-        return sessionPresence.containsKey(sessionId) ? sessionPresence.get(sessionId) : false;
+        return sessionPresence!= null && sessionPresence.containsKey(sessionId) ? sessionPresence.get(sessionId) : false;
     }
     public Map<String, Boolean> getSessionPresence() {
         return sessionPresence;
@@ -43,11 +42,11 @@ public class Attendee {
     }
 
     public boolean isPresent() {
-        return isPresent;
+        return is_Present != null && is_Present.booleanValue(); // Check for null before invoking booleanValue()
     }
 
     public void setPresent(boolean present) {
-        isPresent = present;
+        is_Present = present;
     }
 
     // Todo: Done, Debug it

@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class sessionAddActivity extends AppCompatActivity {
@@ -29,7 +30,23 @@ private EditText editText_Title, editText_Duration;
     private DatabaseReference databaseSession, databaseAttendee;
     private ListView listViewAttendee;
     private List<Attendee> listAttendee;
-    private List<Attendee> listUsedAttendee;
+    private List<String> selectedAttendee;
+    private List<Attendee> attendeeSelectedTrue;
+    private void displaySelectedAttendeeNames(List<String> selectedAttendee) {
+        // Construct a message with all selected attendee names
+        StringBuilder message = new StringBuilder("Selected Attendees: ");
+        for (String name : selectedAttendee) {
+            message.append(name).append(", ");
+        }
+
+        // Remove the trailing comma and space from the message
+        if (!selectedAttendee.isEmpty()) {
+            message.delete(message.length() - 2, message.length());
+        }
+
+        // Show the Toast message with the selected attendee names
+        Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +57,29 @@ private EditText editText_Title, editText_Duration;
         databaseAttendee = FirebaseDatabase.getInstance().getReference("attendee");
         listViewAttendee = findViewById(R.id.listView_attendee);
         listAttendee = new ArrayList<>();
-        listUsedAttendee = new ArrayList<>();
+        selectedAttendee = new ArrayList<>();
+        attendeeSelectedTrue = new ArrayList<>();
+        // Method to select the attendee
         listViewAttendee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Mengambil biodata dari listview yang diklik
-                Attendee attendee = listAttendee.get(position);
+                Attendee selected = (Attendee) parent.getItemAtPosition(position);
                 //Ambil
-                listUsedAttendee.add(attendee);
+                // Retrieve the name of the selected attendee
+                String selectedAttendeeName = selected.getAttendee_Nama(); // Replace getName() with your method to get attendee name
+
+                // Check if the attendee is already selected or not
+                if (selectedAttendee.contains(selectedAttendeeName)) {
+                    // If already selected, remove it from the list
+                    selectedAttendee.remove(selectedAttendeeName);
+                    attendeeSelectedTrue.remove(selected);
+                } else {
+                    // If not selected, add it to the list
+                    selectedAttendee.add(selectedAttendeeName);
+                    attendeeSelectedTrue.add(selected);
+                }
+                displaySelectedAttendeeNames(selectedAttendee);
             }
         });
     }
@@ -88,12 +120,12 @@ private EditText editText_Title, editText_Duration;
             String id = databaseSession.push().getKey();
             // Buat objek biodata dengan semua parameternya
             Session session = new Session(id, title, duration);
-            session.addAttendee(listUsedAttendee);
+            session.addAttendee(attendeeSelectedTrue);
             /* Todo: addAttendee with a list should make sense but something feels off
                 Try to recheck
             */
             //Tambahkan biodata ke database
-            databaseAttendee.child(id).setValue(session)
+            databaseSession.child(id).setValue(session)
                     .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

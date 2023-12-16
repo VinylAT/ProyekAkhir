@@ -1,19 +1,21 @@
 package com.polinema.proyekakhir;
 
+import com.google.firebase.database.PropertyName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Session {
     private String session_ID;
     private String session_nama;
-    private String session_duration;
+    private String duration;
     private boolean isPresent;
     private List<Attendee> attendeeList;
     public Session(){}
     public Session(String ID, String title, String duration){
         this.session_nama = title;
         this.session_ID = ID;
-        this.session_duration = duration;
+        this.duration = duration;
         this.attendeeList = new ArrayList<>();
     }
     public void addAttendee(Attendee attendee){
@@ -22,8 +24,8 @@ public class Session {
         attendee.markPresence(session_ID, false);
         // Also by default set the attendance isPresent status to false
     }
-    public void addAttendee(List<Attendee> attendeeList){
-        for (Attendee attendee : attendeeList){
+    public void addAttendee(List<Attendee> attendees){
+        for (Attendee attendee : attendees){
             attendeeList.add(attendee);
             attendee.markPresence(session_ID, false);
         }
@@ -31,18 +33,18 @@ public class Session {
     public List<Attendee> getAttendeeList() {
         return attendeeList;
     }
-    public boolean isPresent() {
+/*    public boolean isPresent() {
         return isPresent;
     }
     public void setPresent(boolean present) {
         isPresent = present;
-    }
+    } */
     public String getSession_nama() {
         return session_nama;
     }
 
     public String getDuration() {
-        return session_duration;
+        return duration;
     }
 
     public String getSession_ID() {

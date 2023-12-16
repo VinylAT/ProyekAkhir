@@ -85,8 +85,7 @@ public class AttendeeAddActivity extends AppCompatActivity {
             // Buat objek biodata dengan semua parameternya
             Attendee attendee = new Attendee(id, nama, NI);
             //Tambahkan biodata ke database
-            databaseAtendee.child(id).setValue(attendee)
-                    .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+            databaseAtendee.child(id).setValue(attendee).addOnSuccessListener(this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             //Jika proses penambahan data sukses maka dikosongkan
