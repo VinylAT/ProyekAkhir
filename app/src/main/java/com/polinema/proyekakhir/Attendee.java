@@ -20,7 +20,7 @@ public class Attendee {
         sessionPresence.put(sessionId, isPresent);
     }
     public boolean isPresentInSession(String sessionId) {
-        return sessionPresence!= null && sessionPresence.containsKey(sessionId) ? sessionPresence.get(sessionId) : false;
+        return sessionPresence!= null && sessionPresence.containsKey(sessionId) && sessionPresence.get(sessionId);
     }
     public Map<String, Boolean> getSessionPresence() {
         return sessionPresence;
