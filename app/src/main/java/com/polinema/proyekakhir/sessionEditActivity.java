@@ -1,12 +1,16 @@
 package com.polinema.proyekakhir;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -129,6 +133,8 @@ public class sessionEditActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Session session = snapshot.getValue(Session.class);
                 listAttendee = session.getAttendeeList();
+                /* ToDo : I have no idea if it's a bug or not, but something is affecting the
+                *   presence display*/
                 listview_attendee attendeelistAdapater = new listview_attendee(sessionEditActivity.this, listAttendee);
                 attendeelistAdapater.setSpecSessionID(currentSessionID);
                 listViewAttendee.setAdapter(attendeelistAdapater);
@@ -139,4 +145,32 @@ public class sessionEditActivity extends AppCompatActivity {
                 // Handle errors
             }
         });
-}}
+}
+
+    public void buttonupdateEvent(View view) {
+        String title = editText_Title.getText().toString();
+        String duration = editText_Duration.getText().toString();
+        if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(duration)){
+            Session session = new Session(currentSessionID, title, duration);
+            databaseSession.setValue(session).addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    // Toast popup
+                    Toast.makeText(sessionEditActivity.this, "Event updated", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Please fill all forms", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void buttondeleteEvent(View view) {
+        databaseSession.removeValue().addOnSuccessListener(this, new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(sessionEditActivity.this, "Event removed", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
