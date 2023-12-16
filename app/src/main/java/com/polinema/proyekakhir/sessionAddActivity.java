@@ -24,8 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class sessionAddActivity extends AppCompatActivity {
-/* Todo : add the attendee listview to add them into each session. Done
-    Still scuffed, please check */
+/* Todo : Debug*/
 private EditText editText_Title, editText_Duration;
     private DatabaseReference databaseSession, databaseAttendee;
     private ListView listViewAttendee;

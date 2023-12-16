@@ -7,12 +7,15 @@
     tools:context=".sessionEditActivity"
     android:orientation="vertical"
     android:background="#212722">
+
+
     <EditText
         android:id="@+id/editText_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Event Title"
         android:textColor="#FFFDFD"
-        android:hint="Event Title" />
+        android:textColorHint="#46434C" />
 
     <EditText
         android:id="@+id/editText_Duration"
@@ -20,30 +23,80 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editText_Title"
         android:hint="Event Duration"
-        android:textColor="#FFFDFD"
         android:inputType="number"
-        android:minHeight="48dp" />
-    <LinearLayout
+        android:minHeight="48dp"
+        android:textColor="#FFFDFD"
+        android:textColorHint="#46434C" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_horizon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/buttonEditSession"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditSession">
 
         <Button
-            android:id="@+id/buttonAddSession"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonEditSession"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="#DC8004"
-            android:onClick="buttonupdateBiodata"
-            android:text="Add" />
+            android:onClick="buttonupdateEvent"
+            android:text="Edit"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDeleteSession"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="205dp" />
 
         <Button
-            android:id="@+id/buttonAddUser"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonDeleteSession"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="#DC8004"
-            android:onClick="buttondeleteBiodata"
-            android:text="Delete" />
-    </LinearLayout>
+            android:onClick="buttondeleteEvent"
+            android:text="Delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonEditSession"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="206dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_horizon2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_horizon">
+
+        <Button
+            android:id="@+id/buttonPresenceEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DC8004"
+            android:onClick="toPresence"
+            android:text="Edit Attendee"
+            app:layout_constraintEnd_toStartOf="@+id/buttonStartCamera"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonStartCamera"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DC8004"
+            android:onClick="buttondeleteEvent"
+            android:text="Camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/buttonPresenceEdit"
+            app:layout_constraintTop_toTopOf="@id/buttonPresenceEdit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/listViewAttendee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

@@ -28,7 +28,7 @@
         android:textColorHint="#727262" />
 
     <Button
-        android:id="@+id/buttonAddSession"
+        android:id="@+id/buttonEditSession"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editDuration"
@@ -40,7 +40,7 @@
         android:id="@+id/listView_attendee"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttonAddSession"
+        android:layout_below="@id/buttonEditSession"
         android:cacheColorHint="#FFFFFF" />
 
 </RelativeLayout>
