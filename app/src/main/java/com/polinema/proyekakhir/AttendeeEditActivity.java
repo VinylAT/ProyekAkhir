@@ -26,6 +26,8 @@ public class AttendeeEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendee_edit);
         editText_Name = findViewById(R.id.nameEdit);
+        editText_NI = findViewById(R.id.niEdit);
+
     }
     @Override
     protected void onStart(){
