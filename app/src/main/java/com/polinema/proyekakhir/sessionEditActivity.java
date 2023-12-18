@@ -3,6 +3,7 @@ package com.polinema.proyekakhir;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ public class sessionEditActivity extends AppCompatActivity {
         // Show the Toast message with the selected attendee names
         Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
     }*/
-    private void fetchAttendeesforCurrentSession(Session currentSession){
+    /*private void fetchAttendeesforCurrentSession(Session currentSession){
         databaseAttendee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,7 +68,7 @@ public class sessionEditActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,6 @@ public class sessionEditActivity extends AppCompatActivity {
         selectedAttendee = new ArrayList<>();
         attendeeSelectedTrue = new ArrayList<>();
         // Method to select the attendee
-        /*
         listViewAttendee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -104,7 +104,7 @@ public class sessionEditActivity extends AppCompatActivity {
                 }
                 //displaySelectedAttendeeNames(selectedAttendee);
             }
-        }); */
+        });
     }
     @Override
     protected void onStart(){
