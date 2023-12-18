@@ -39,11 +39,11 @@ public class listview_attendee extends ArrayAdapter {
         TextViewNama.setText(attendee.getAttendee_Nama());
         TextViewNI.setText(attendee.getAttendee_NI());
         // Session ID specific check to display where the attendee is.
-        boolean isPresent = attendee.isPresentInSession(SessionIDtoCheck);
+        boolean isPresent = attendee.isPresent();
         if (isPresent) {
             TextViewisPresent.setText("Hadir");
         } else {
-            TextViewisPresent.setText(" ");
+            TextViewisPresent.setText("Tidak Hadir");
         }
 
         return listViewItem;

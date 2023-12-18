@@ -3,6 +3,7 @@ package com.polinema.proyekakhir;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class sessionEditActivity extends AppCompatActivity {
-//  Todo : Implement Camera here
+//  Todo : Implement Camera here and finish the manage Attendee button
     private EditText editText_Title, editText_Duration;
     private DatabaseReference databaseSession;
     private DatabaseReference databaseAttendee;
@@ -45,7 +46,7 @@ public class sessionEditActivity extends AppCompatActivity {
         // Show the Toast message with the selected attendee names
         Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
     }*/
-    private void fetchAttendeesforCurrentSession(Session currentSession){
+   /* private void fetchAttendeesforCurrentSession(Session currentSession){
         databaseAttendee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,7 +68,7 @@ public class sessionEditActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,29 +83,22 @@ public class sessionEditActivity extends AppCompatActivity {
         selectedAttendee = new ArrayList<>();
         attendeeSelectedTrue = new ArrayList<>();
         // Method to select the attendee
-        /*
+
         listViewAttendee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Mengambil biodata dari listview yang diklik
                 Attendee selected = (Attendee) parent.getItemAtPosition(position);
-                //Ambil
-                // Retrieve the name of the selected attendee
-                String selectedAttendeeName = selected.getAttendee_Nama(); // Replace getName() with your method to get attendee name
-
-                // Check if the attendee is already selected or not
-                if (selectedAttendee.contains(selectedAttendeeName)) {
-                    // If already selected, remove it from the list
-                    selectedAttendee.remove(selectedAttendeeName);
-                    attendeeSelectedTrue.remove(selected);
+                String name = selected.getAttendee_Nama();
+                if (selected.isPresent()){
+                    selected.setPresent(false);
+                    Toast.makeText(getApplicationContext(), name+" is now not present", Toast.LENGTH_SHORT).show();
                 } else {
-                    // If not selected, add it to the list
-                    selectedAttendee.add(selectedAttendeeName);
-                    attendeeSelectedTrue.add(selected);
+                    selected.setPresent(true);
+                    Toast.makeText(getApplicationContext(), name+" is present", Toast.LENGTH_SHORT).show();
                 }
-                //displaySelectedAttendeeNames(selectedAttendee);
             }
-        }); */
+        });
     }
     @Override
     protected void onStart(){
@@ -128,15 +122,18 @@ public class sessionEditActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        databaseSession.addValueEventListener(new ValueEventListener() {
+        databaseSession.child("attendeeList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Session session = snapshot.getValue(Session.class);
-                listAttendee = session.getAttendeeList();
-                /* ToDo : I have no idea if it's a bug or not, but something is affecting the
-                *   presence display*/
+                listAttendee.clear();
+                //Session session = snapshot.getValue(Session.class);
+                //listAttendee = session.getAttendeeList();
+                for (DataSnapshot postsnap : snapshot.getChildren()){
+                    Attendee attendee = postsnap.getValue(Attendee.class);
+                    listAttendee.add(attendee);
+                }
+                /* ToDo : Changed but sus*/
                 listview_attendee attendeelistAdapater = new listview_attendee(sessionEditActivity.this, listAttendee);
-                attendeelistAdapater.setSpecSessionID(currentSessionID);
                 listViewAttendee.setAdapter(attendeelistAdapater);
             }
 
@@ -152,9 +149,10 @@ public class sessionEditActivity extends AppCompatActivity {
         String duration = editText_Duration.getText().toString();
         if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(duration)){
             Session session = new Session(currentSessionID, title, duration);
+            session.editAttendee(listAttendee);
             databaseSession.setValue(session).addOnSuccessListener(this, new OnSuccessListener<Void>() {
                 @Override
-                public void onSuccess(Void unused) {
+                public void onSuccess(Void aVoid) {
                     // Toast popup
                     Toast.makeText(sessionEditActivity.this, "Event updated", Toast.LENGTH_LONG).show();
                     finish();
@@ -168,7 +166,7 @@ public class sessionEditActivity extends AppCompatActivity {
     public void buttondeleteEvent(View view) {
         databaseSession.removeValue().addOnSuccessListener(this, new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void unused) {
+            public void onSuccess(Void aVoid) {
                 Toast.makeText(sessionEditActivity.this, "Event removed", Toast.LENGTH_LONG).show();
             }
         });

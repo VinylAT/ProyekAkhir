@@ -30,6 +30,11 @@ public class Session {
             attendee.markPresence(session_ID, false);
         }
     }
+    public void editAttendee(List<Attendee> attendees){
+        for (Attendee attendee : attendees){
+            attendeeList.add(attendee);
+        }
+    }
     public List<Attendee> getAttendeeList() {
         return attendeeList;
     }
