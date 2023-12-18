@@ -171,4 +171,7 @@ public class sessionEditActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void toPresence(View view) {
+    }
 }
