@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#DC8004"
             android:onClick="toPresence"
-            android:text="Edit Attendee"
+            android:text="Manage Attendee"
             app:layout_constraintEnd_toStartOf="@+id/buttonStartCamera"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

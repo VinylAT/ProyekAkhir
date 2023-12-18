@@ -3,49 +3,40 @@ package com.polinema.proyekakhir;
 import com.google.firebase.database.PropertyName;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Session {
     private String session_ID;
     private String session_nama;
     private String duration;
     private boolean isPresent;
-    private Map<String, Attendee> attendeeList = new HashMap<>();
-    private List<Attendee> listAttendee;
+    private List<Attendee> attendeeList;
     public Session(){}
     public Session(String ID, String title, String duration){
         this.session_nama = title;
         this.session_ID = ID;
         this.duration = duration;
+        this.attendeeList = new ArrayList<>();
     }
     public void addAttendee(Attendee attendee){
         // This function adds the session_ID for this session to the Attendee registered.
-        String ids = attendee.getAttendee_ID();
-        attendeeList.put(ids, attendee);
+        attendeeList.add(attendee);
         attendee.markPresence(session_ID, false);
         // Also by default set the attendance isPresent status to false
     }
     public void addAttendee(List<Attendee> attendees){
         for (Attendee attendee : attendees){
-            String ids = attendee.getAttendee_ID();
-            attendeeList.put(ids, attendee);
+            attendeeList.add(attendee);
             attendee.markPresence(session_ID, false);
         }
     }
-    public void markAttendeePresence(Attendee attendee){
-        if (attendee.isPresentInSession(session_ID) && attendee.isPresent()){
-            attendee.markPresence(session_ID, false);
-            attendee.setPresent(false);
-        } else {
-            attendee.markPresence(session_ID, true);
-            attendee.setPresent(true);
+    public void editAttendee(List<Attendee> attendees){
+        for (Attendee attendee : attendees){
+            attendeeList.add(attendee);
         }
     }
     public List<Attendee> getAttendeeList() {
-        listAttendee = new ArrayList<>(attendeeList.values());
-        return listAttendee;
+        return attendeeList;
     }
 /*    public boolean isPresent() {
         return isPresent;
