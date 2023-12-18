@@ -51,6 +51,8 @@ public class ListviewAttendee extends AppCompatActivity {
         unownedAttendee = new ArrayList<>();
         ownedAttendee = new ArrayList<>();
         currentSessionID = getIntent().getStringExtra("SessionID");
+        currentTitle = getIntent().getStringExtra("SessionTitle");
+        currentDuration = getIntent().getStringExtra("SessionDuration");
         databaseAttendee = FirebaseDatabase.getInstance().getReference("attendee");
         databaseSession = FirebaseDatabase.getInstance().getReference("session").child(currentSessionID);
         listViewAttendee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,7 +81,7 @@ public class ListviewAttendee extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        databaseSession.addValueEventListener(new ValueEventListener() {
+/*        databaseSession.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Masuk ke objek biodata
@@ -93,7 +95,7 @@ public class ListviewAttendee extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        });*/
         databaseSession.child("attendeeList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -123,11 +125,11 @@ public class ListviewAttendee extends AppCompatActivity {
                 }
 
                 for (Attendee attendee: listAttendee){
-                    if (!ownedAttendee.contains(attendee)){
+                    if (ownedAttendee.contains(attendee)){
                         unownedAttendee.add(attendee);
                     }
                 }
-                listview_attendee attendeelistAdapater = new listview_attendee(ListviewAttendee.this, unownedAttendee);
+                listview_attendee attendeelistAdapater = new listview_attendee(ListviewAttendee.this, listAttendee);
                 listViewAttendee.setAdapter(attendeelistAdapater);
             }
 
@@ -136,8 +138,17 @@ public class ListviewAttendee extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    protected void onStop(){
+        super.onStop();
         Session session = new Session(currentSessionID, currentTitle,currentDuration);
         session.addAttendee(attendeeSelectedTrue);
+        for (Attendee attendee : attendeeSelectedTrue) {
+            if (ownedAttendee.contains(attendee)){
+                ownedAttendee.remove(attendee);
+            }
+        }
         session.addAttendee(ownedAttendee);
         databaseSession.setValue(session);
     }

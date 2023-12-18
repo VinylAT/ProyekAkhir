@@ -176,6 +176,10 @@ public class sessionEditActivity extends AppCompatActivity {
     public void toPresence(View view) {
         Intent toPresence = new Intent(this, ListviewAttendee.class);
         toPresence.putExtra("SessionID", currentSessionID);
+        String title = editText_Title.getText().toString();
+        String duration = editText_Duration.getText().toString();
+        toPresence.putExtra("SessionTitle", title);
+        toPresence.putExtra("SessionDuration", duration);
         startActivity(toPresence);
     }
 }
