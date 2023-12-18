@@ -11,4 +11,5 @@
         android:id="@+id/soloListview"
         android:layout_width="409dp"
         android:layout_height="729dp" />
+
 </LinearLayout>

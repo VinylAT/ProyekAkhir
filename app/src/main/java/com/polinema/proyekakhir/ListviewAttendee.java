@@ -21,10 +21,10 @@ import java.util.List;
 public class ListviewAttendee extends AppCompatActivity {
     private ListView listViewAttendee;
     private List<Attendee> listAttendee;
-    private DatabaseReference databaseSession;
+    private DatabaseReference databaseSession, databaseAttendee;
     private List<String> selectedAttendee;
-    private List<Attendee> attendeeSelectedTrue;
-    private String currentSessionID;
+    private List<Attendee> attendeeSelectedTrue, ownedAttendee, unownedAttendee;
+    private String currentSessionID, currentTitle, currentDuration;
     private void displaySelectedAttendeeNames(List<String> selectedAttendee) {
         // Construct a message with all selected attendee names
         StringBuilder message = new StringBuilder("Selected Attendees: ");
@@ -48,8 +48,11 @@ public class ListviewAttendee extends AppCompatActivity {
         listAttendee = new ArrayList<>();
         selectedAttendee = new ArrayList<>();
         attendeeSelectedTrue = new ArrayList<>();
-        databaseSession = FirebaseDatabase.getInstance().getReference("session").child(currentSessionID);
+        unownedAttendee = new ArrayList<>();
+        ownedAttendee = new ArrayList<>();
         currentSessionID = getIntent().getStringExtra("SessionID");
+        databaseAttendee = FirebaseDatabase.getInstance().getReference("attendee");
+        databaseSession = FirebaseDatabase.getInstance().getReference("session").child(currentSessionID);
         listViewAttendee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -83,16 +86,31 @@ public class ListviewAttendee extends AppCompatActivity {
                 Session session = snapshot.getValue(Session.class);
                 //Cek apakah data kosong
                 if (session != null){
-                    session.addAttendee(listAttendee);
+                    currentTitle = session.getSession_nama();
+                    currentDuration = session.getDuration();
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-        // This function below is to show the list of attendees in this layout
         databaseSession.child("attendeeList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Masuk ke objek biodata
+                for (DataSnapshot postSnapshot : snapshot.getChildren()){
+                    //Masuk ke objek biodata
+                    Attendee attendee = postSnapshot.getValue(Attendee.class);
+                    //Simpan ke list
+                    ownedAttendee.add(attendee);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        // This function below is to show the list of attendees in this layout
+        databaseAttendee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listAttendee.clear();
@@ -103,7 +121,13 @@ public class ListviewAttendee extends AppCompatActivity {
                     //Simpan ke list
                     listAttendee.add(attendee);
                 }
-                listview_attendee attendeelistAdapater = new listview_attendee(ListviewAttendee.this, listAttendee);
+
+                for (Attendee attendee: listAttendee){
+                    if (!ownedAttendee.contains(attendee)){
+                        unownedAttendee.add(attendee);
+                    }
+                }
+                listview_attendee attendeelistAdapater = new listview_attendee(ListviewAttendee.this, unownedAttendee);
                 listViewAttendee.setAdapter(attendeelistAdapater);
             }
 
@@ -112,6 +136,10 @@ public class ListviewAttendee extends AppCompatActivity {
 
             }
         });
+        Session session = new Session(currentSessionID, currentTitle,currentDuration);
+        session.addAttendee(attendeeSelectedTrue);
+        session.addAttendee(ownedAttendee);
+        databaseSession.setValue(session);
     }
 
 }

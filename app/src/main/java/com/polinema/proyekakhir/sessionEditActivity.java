@@ -1,5 +1,6 @@
 package com.polinema.proyekakhir;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -173,5 +174,8 @@ public class sessionEditActivity extends AppCompatActivity {
     }
 
     public void toPresence(View view) {
+        Intent toPresence = new Intent(this, ListviewAttendee.class);
+        toPresence.putExtra("SessionID", currentSessionID);
+        startActivity(toPresence);
     }
 }
